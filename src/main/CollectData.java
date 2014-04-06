@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 
 import com.echonest.api.v4.EchoNestException;
 
-import dataCollection.DataCollector;
+import data.DataCollector;
 
 public class CollectData {
 	
