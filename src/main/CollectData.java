@@ -21,6 +21,7 @@ public class CollectData {
 			pw = new PrintWriter("data/ArtistBiographies.dat");
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
+			System.exit(0);
 		}
 		
 		DataCollector cd;
