@@ -1,5 +1,6 @@
 package data;
 
+import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.HashSet;
@@ -39,9 +40,10 @@ public class DataCollector {
      * @param delimiter The delimiter to separate the artists.
      * @param pw The PrintWriter to print the data to.
      * @throws EchoNestException
+     * @throws FileNotFoundException 
      */
 	public void randomWalkBioData(String seedName, int nArtists, int nRelated, 
-			String delimiter, PrintWriter pw) throws EchoNestException {
+			String delimiter) throws EchoNestException, FileNotFoundException {
 		appearedArtists = new HashSet<String>(nArtists);
         List<Artist> artists = en.searchArtists(seedName);
         StringBuilder biographies;
@@ -53,12 +55,13 @@ public class DataCollector {
             	String artistName = seed.getName();
             	String artistID = seed.getID();
             	System.out.println("Artist " + (i + 1) + ": " + artistName);
+            	PrintWriter pw = new PrintWriter("data/" + artistID + ".artist");
             	pw.print(artistID + delimiter + artistName);
             	for(Biography b : seed.getBiographies()) {
             		biographies.append(b.getText() + " ");
             	}
             	pw.println(delimiter + biographies.toString());
-            	
+            	pw.close();
             	//Find new related artist which have not appeared yet.
             	List<Artist> sims = seed.getSimilar(nRelated);
             	if (sims.size() > 0) {

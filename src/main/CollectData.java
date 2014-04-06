@@ -15,27 +15,19 @@ public class CollectData {
     	int nRelated = 10;
     	String delimitor = " --------------------------------------------- \n ";
     	String seed = "rolling stones";
-    	
-    	PrintWriter pw = null;
-		try {
-			pw = new PrintWriter("data/ArtistBiographies.dat");
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-			System.exit(0);
-		}
 		
 		DataCollector cd;
 		double startTime = System.currentTimeMillis();
 		try {
 			cd = new DataCollector();
-			cd.randomWalkBioData(seed, nArtists, nRelated, delimitor ,pw);
+			cd.randomWalkBioData(seed, nArtists, nRelated, delimitor);
 			double seconds = (System.currentTimeMillis() - startTime)/1000;
-			pw.close();
 			System.out.println("Ended successfully after " + seconds + " seconds.");
 		} catch (EchoNestException e) {
-			pw.close();
 			double seconds = (System.currentTimeMillis() - startTime)/1000;
 			System.out.println("Ended with exception after " + seconds + " seconds.");
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		

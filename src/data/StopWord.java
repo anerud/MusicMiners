@@ -6,11 +6,17 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 public class StopWord {
 	
+	/**
+	 * Imports and the data from all the .stop-files in the stopwords folder
+	 * and returns it as a set.
+	 * @return A set of stopwords.
+	 */
 	public static Set<String> getStopWords(){
 		HashSet<String> stopWords = new HashSet<String>();
 		List<String> stopLists = new ArrayList<String>();
@@ -40,4 +46,18 @@ public class StopWord {
 		return stopWords;
 	}
 
+	/**
+	 * Deletes all occurrences of the words in stopword of the list data.
+	 * @param stopwords the words to delete.
+	 * @param data the list of words to delete from.
+	 */
+	public static void deleteStopWords(Set<String> stopwords, List<String> data) {
+		Iterator<String> it = data.iterator();
+		while(it.hasNext()) {
+			if(stopwords.contains(it.next())) {
+				it.remove();
+			}
+		}
+	}
+	
 }
