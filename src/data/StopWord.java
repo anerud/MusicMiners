@@ -36,7 +36,7 @@ public class StopWord {
 			    BufferedReader in = new BufferedReader(new FileReader("stopwords/" + stopList));
 			    String stopWord;
 			    while ((stopWord = in.readLine()) != null)
-			        stopWords.add(stopWord);
+			        stopWords.add(stopWord.toLowerCase());
 			    in.close();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -46,18 +46,4 @@ public class StopWord {
 		return stopWords;
 	}
 
-	/**
-	 * Deletes all occurrences of the words in stopword of the list data.
-	 * @param stopwords the words to delete.
-	 * @param data the list of words to delete from.
-	 */
-	public static void deleteStopWords(Set<String> stopwords, List<String> data) {
-		Iterator<String> it = data.iterator();
-		while(it.hasNext()) {
-			if(stopwords.contains(it.next())) {
-				it.remove();
-			}
-		}
-	}
-	
 }
