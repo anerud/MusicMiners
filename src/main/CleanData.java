@@ -21,6 +21,7 @@ public class CleanData {
 		List<String> dataFiles = new ArrayList<String>();
 		File[] files = new File("data").listFiles();
 		
+		// Detect what files to clean.
 		for (File file : files) {
 		    if (file.isFile()) {
 		    	String fileName = file.getName();
@@ -31,6 +32,7 @@ public class CleanData {
 		    }
 		}
 		
+		// Clean all files and save them to new file 'fileName.artistcleaned'.
 		for(String fileName : dataFiles) {
 			List<String> cleanedBio = new LinkedList<String>();
 			try(BufferedReader br = new BufferedReader(new FileReader("data/" + fileName))) {
@@ -42,15 +44,21 @@ public class CleanData {
 		            line = br.readLine();
 		        }
 		        String bio = sb.toString();
-		        String[] words = bio.split(" |\t|\n");
+		        
+		        //Separate all words
+		        String[] words = bio.split(" |\t|\n"); 
 		        for(String s : words) {
 	        		cleanedBio.add(s);
 		        }
 		    }
+			
+			//Clean the bio and remove stop words.
 			cleanedBio = DataCleaner.firstCleanOfText(cleanedBio);
 			DataCleaner.removeStopWords(sw, cleanedBio);
 			cleanedBio = DataCleaner.secondCleanOfText(cleanedBio);
 			System.out.println(cleanedBio.size());
+			
+			//Print to new file
 			PrintWriter pw = new PrintWriter("data/" + fileName + "cleaned");
 			for(String s : cleanedBio) {
 				pw.println(s);

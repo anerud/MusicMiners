@@ -9,6 +9,7 @@ public class DataCleaner {
 	
 	/**
 	 * Deletes all occurrences of the words in stopword of the list data.
+	 * 
 	 * @param stopwords the words to delete.
 	 * @param data the list of words to delete from.
 	 */
@@ -21,6 +22,26 @@ public class DataCleaner {
 		}
 	}
 	
+	/**
+	 * A first clean of the data before removing stop words.
+	 * OBS!!! Call this before removing stop words. 
+	 * Removes empty words
+	 * and the following characters: 
+	 * '.' 
+	 * ','
+	 * ':'
+	 * ';'
+	 * '('
+	 * ')'
+	 * ' '
+	 * '\t'
+	 * '\n'
+	 * '\r'
+	 * '\"';
+	 * 
+	 * @param text the list of text
+	 * @return a list of the cleaned text
+	 */
 	public static List<String> firstCleanOfText(List<String> text) {
 		List<String> newTest = new LinkedList<String>();
 		for(int i = 0; i < text.size(); i++) {
@@ -57,6 +78,20 @@ public class DataCleaner {
 				 c == '\"');
 	}
 
+	/**
+	 * A second clean of the data after removing the stop words. 
+	 * OBS!!! Call this after removing the stop words.
+	 * Removes occurrences of:
+	 * '\''
+	 * '´'
+	 * '`'
+	 * "'s"
+	 * "´s"
+	 * "`s"
+	 * 
+	 * @param text the text to clean.
+	 * @return the cleaned text.
+	 */
 	public static List<String> secondCleanOfText(List<String> text) {
 		List<String> newTest = new LinkedList<String>();
 		for(int i = 0; i < text.size(); i++) {
