@@ -11,8 +11,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import data.DataCleaner;
-import data.StopWord;
+import data.util.DataCleaner;
+import data.util.StopWord;
 
 public class CleanData {
 	
