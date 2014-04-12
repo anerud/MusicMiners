@@ -57,7 +57,6 @@ public class CleanData {
 			cleanedBio = DataCleaner.firstCleanOfText(cleanedBio);
 			DataCleaner.removeStopWords(sw, cleanedBio);
 			cleanedBio = DataCleaner.secondCleanOfText(cleanedBio);
-			System.out.println(cleanedBio.size());
 			
 			//Print to new file
 			PrintWriter pw = new PrintWriter("data/" + fileName + "cleaned");
@@ -66,6 +65,7 @@ public class CleanData {
 			}
 			pw.close();
 		}
+		System.out.println("Data is now cleaned!");
 	}
 
 }
