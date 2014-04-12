@@ -9,101 +9,95 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import com.echonest.api.v4.EchoNestAPI;
+import com.echonest.api.v4.EchoNestException;
+
 
 public class DataInitiator {
 	
-	private int nWords = 0;
-	List<List<String>> data;
 	List<List<WordCountTuple>> wordcount;
-	HashMap<String, Integer> vocabulary;
+	ArrayList<String> vocabulary;
+	ArrayList<String> documentOrder;
+	HashMap<String,String> documentNames;
 	
-	public DataInitiator() {
-		data = importData();
-		wordcount = calculateWordcount();
+   	
+	public DataInitiator(String dataSetName, String vocabularyName) {
+		importData(dataSetName, vocabularyName);
 	}
 	
-	private List<List<String>> importData(){
-		List<List<String>> artistData = new ArrayList<List<String>>();
+	private void importData(String dataSetName, String vocabularyName){
 		
-		// Find all .artistcleaned.
-		List<String> dataFiles = new ArrayList<String>();
-		File[] files = new File("data").listFiles();
-		for (File file : files) {
-		    if (file.isFile()) {
-		    	String fileName = file.getName();
-		    	String fileEnd = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
-		    	if(fileEnd.equals("artistcleaned")) {
-		    		dataFiles.add(fileName);
-		    	}
-		    }
-		}
+		//Read documents
+		documentOrder = new ArrayList<String>();
+		try(BufferedReader br = new BufferedReader(new FileReader("data/document_order.txt"))) {
+	        String line = br.readLine();
+	        while (line != null) {
+	        	documentOrder.add(line);
+	            line = br.readLine();
+	        }
+	    } catch(IOException e) {
+	    	e.printStackTrace();
+	    }
 		
-		//Read all files
-		for(String fileName : dataFiles) {
-			ArrayList<String> artistBio = new ArrayList<String>();
-			artistData.add(artistBio);
-			try(BufferedReader br = new BufferedReader(new FileReader("data/" + fileName))) {
-		        String line = br.readLine();
-		        while (line != null) {
-		        	artistBio.add(line);
-		            line = br.readLine();
-		        }
-		    } catch(IOException e) {
-		    	e.printStackTrace();
-		    }
-		}
+		//Read documents names
+		documentNames = new HashMap<String,String>();
+		try(BufferedReader br = new BufferedReader(new FileReader("data/artistNames.txt"))) {
+	        String line = br.readLine();
+	        while (line != null) {
+	        	String[] split = line.split(",");
+	        	documentNames.put(split[0], split[1]);
+	            line = br.readLine();
+	        }
+	    } catch(IOException e) {
+	    	e.printStackTrace();
+	    }
 		
-		return artistData;
+		//Read vocabulary
+		vocabulary = new ArrayList<String>();
+		try(BufferedReader br = new BufferedReader(new FileReader("data/" + vocabularyName))) {
+	        String line = br.readLine();
+	        while (line != null) {
+	        	vocabulary.add(line);
+	            line = br.readLine();
+	        }
+	    } catch(IOException e) {
+	    	e.printStackTrace();
+	    }
+		
+		//Read counts
+		wordcount = new ArrayList<List<WordCountTuple>>();
+		try(BufferedReader br = new BufferedReader(new FileReader("data/" + dataSetName))) {
+	        String line = br.readLine();
+	        while (line != null) {
+	        	ArrayList<WordCountTuple> doc = new ArrayList<WordCountTuple>();
+	        	wordcount.add(doc);
+	        	String[] wordCounts = line.split(" ");
+	        	for(String wc : wordCounts) {
+	        		String[] idCnt = wc.split(":");
+	        		doc.add(new WordCountTuple(Integer.parseInt(idCnt[0]), Integer.parseInt(idCnt[1])));
+	        	}
+	            line = br.readLine();
+	        }
+	    } catch(IOException e) {
+	    	e.printStackTrace();
+	    }
+		
 	}
-	
-	private List<List<WordCountTuple>> calculateWordcount(){
-		vocabulary = new HashMap<String, Integer>();
-		List<List<WordCountTuple>> wordcount = new ArrayList<List<WordCountTuple>>();
-		int id = 0;
-		for(List<String> artist : data) {
-			//Count the words
-			HashMap<String,Integer> counts = new HashMap<String,Integer>();
-			
-			
-			for(String word : artist) {
-				int count = 1;
-				if(counts.containsKey(word)) {
-					count = counts.get(word).intValue() + 1;
-				}
-				counts.put(word, new Integer(count));
-				
-				if(!vocabulary.containsKey(word)) {
-					vocabulary.put(word,id);
-					id++;
-				}
-				
-			}
-			
-			List<WordCountTuple> artistCounts = new ArrayList<WordCountTuple>();
-			wordcount.add(artistCounts);
-			for(String word : counts.keySet()) {
-				artistCounts.add(new WordCountTuple(word, vocabulary.get(word), counts.get(word)));
-			}
-			
-		}
-		this.nWords = vocabulary.keySet().size();
-		return wordcount;
-	}
-	
-	public HashMap<String, Integer> getVocabulary() {
+		
+	public ArrayList<String> getVocabulary() {
 		return vocabulary;
+	}
+	
+	public ArrayList<String> getDocumentOrder() {
+		return documentOrder;
+	}
+	
+	public HashMap<String,String> getDocumentNames() {
+		return documentNames;
 	}
 	
 	public List<List<WordCountTuple>> getWordcount() {
 		return wordcount;
-	}
-
-	public int getnWords() {
-		return nWords;
-	}
-	
-	public List<List<String>> getData() {
-		return data;
 	}
 
 }

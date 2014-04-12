@@ -15,14 +15,20 @@ import data.WordCountTuple;
 public class RunLDA {
 	
 	private static List<List<WordCountTuple>> wordcount;
-	private static HashMap<String,Integer> vocabulary;
-	private static int nTopics = 10;
-	private static double alpha = 52.0/nTopics;
+	private static ArrayList<String> vocabulary;
+	private static ArrayList<String> documentOrder;
+	private static HashMap<String,String> documentNames;
+	private static int nTopics = 30;
+	private static double alpha = 50/nTopics;
 	private static double eta = 0.1;
-	private static int nIterations = 500;
+	private static int nIterations = 1000;
+	private static int nBurnInIterations = 500;
 	private static int nReadInIterations = 10;
-	private static int nBurnInIterations = 200;
 	private static int nWords;
+	private static boolean printProgress = true;
+	
+	private static double[][] beta;
+	private static double[][] theta;
 	
 	/**
 	 * Run LDA gibbs sampler.
@@ -33,6 +39,7 @@ public class RunLDA {
 	 * "-nIterations x"
 	 * "-nReadInIterations x"
 	 * "-nBurnInIterations x"
+	 * "-printProgress true/false"
 	 * 
 	 */
 	public static void main(String[] args) {
@@ -54,6 +61,8 @@ public class RunLDA {
 							nReadInIterations = Integer.parseInt(args[i+1]);
 						} else if(args[i].equals("-nBurnInIterations")) {
 							nBurnInIterations = Integer.parseInt(args[i+1]);
+						} else if(args[i].equals("-printProgress")) {
+							printProgress = Boolean.parseBoolean(args[i+1]);
 						}
 					}
 				} else {
@@ -76,37 +85,73 @@ public class RunLDA {
 		}
 		
 		//Import words and count them
-		DataInitiator dataInit = new DataInitiator();
+		DataInitiator dataInit = new DataInitiator("wordcount_artist.txt", "vocabulary_artist.txt");
 		wordcount = dataInit.getWordcount();
-		nWords = dataInit.getnWords();
 		vocabulary = dataInit.getVocabulary();
-		ArrayList<String> idWords = new ArrayList<String>(nWords);
-		for(int i = 0; i < nWords; i++) {
-			idWords.add("");
-		}
+		documentOrder = dataInit.getDocumentOrder();
+		documentNames = dataInit.getDocumentNames();
 		
-		for(String word : vocabulary.keySet()) {
-			idWords.set(vocabulary.get(word), word);
-		}
+		nWords = vocabulary.size();
 		
 		LDAGibbsSampler ldags = new LDAGibbsSampler(wordcount, nTopics, alpha, eta, 
-				nIterations, nReadInIterations, nBurnInIterations, nWords, false);
+				nIterations, nReadInIterations, nBurnInIterations, nWords, printProgress);
 		ldags.run();
 		
-		double[][] beta = ldags.getBeta();
-		double[][] theta = ldags.getTheta();
+		beta = ldags.getBeta();
+		theta = ldags.getTheta();
+		double[][] distances = computeDistances();
 		
-		int nBestWords = 5;
+		printNBestWords(5);
+		printNRelatedDocuments(distances,5);
+		
+		
+		
+	}
+	
+	private static double[][] computeDistances() {
+		int nDocuments = theta.length;
+		int nTopics = theta[0].length;
+		double[][] distances = new double[nDocuments][nDocuments];
+		for(int d = 0; d < nDocuments; d++) {
+			for(int d2 = d + 1 ; d2 < nDocuments; d2++) {
+				double dist = 0;
+				for(int k = 0; k < nTopics; k++) {
+					dist += (theta[d][k] - theta[d2][k])*(theta[d][k] - theta[d2][k]);
+				}
+				distances[d][d2] = dist;
+				distances[d2][d] = dist;
+			}
+		}
+		return distances;
+	}
+	
+	private static void printNRelatedDocuments(double[][] distances, int nRelatedDoc) {
+		int nDocuments = distances.length;
+		for(int d = 0; d < nDocuments; d++) {
+			
+			ArrayIndexComparator comparator = new ArrayIndexComparator(distances[d]);
+			Integer[] indexes = comparator.createIndexArray();
+			Arrays.sort(indexes, comparator);
+			System.out.println("------- " + documentNames.get(documentOrder.get(d)) + " -------");
+			for(int i = 1; i <= nRelatedDoc; i++) {
+				System.out.println(documentNames.get(documentOrder.get(indexes[i])) + ": " + distances[d][indexes[i]]);
+			}
+			
+			System.out.println("\n-----------------------------------------\n");
+		}
+	}
+	
+	private static void printNBestWords(int nBestWords) {
 		for(int k = 0; k < nTopics; k++) {
 			
 			ArrayIndexComparator comparator = new ArrayIndexComparator(beta[k]);
 			Integer[] indexes = comparator.createIndexArray();
 			Arrays.sort(indexes, comparator);
 			for(int i = indexes.length - 1; i > indexes.length - 1 - nBestWords; i--) {
-				System.out.println(idWords.get(indexes[i]) + ": " + beta[k][indexes[i]]);
+				System.out.println(vocabulary.get(indexes[i]) + ": " + beta[k][indexes[i]]);
 			}
 			
-			System.out.println("-------------------");
+			System.out.println("\n-----------------------------------------\n");
 		}
 	}
 	

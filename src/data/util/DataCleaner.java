@@ -118,7 +118,9 @@ public class DataCleaner {
 	private static String removeApostropheFollowedByS(String s) {
 		if(s.endsWith("'s") || s.endsWith("´s") || s.endsWith("`s")) {
 			String[] split = s.split("'s|´s|`s");
-			return split[0];
+			if(split.length > 0)
+				return split[0];
+			return "";
 		}
 		return s;
 	}

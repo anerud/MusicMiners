@@ -18,8 +18,6 @@ public class LDAGibbsSampler {
 	private int nWords;
 	
 	//Internal variables
-	private double[][][] beta_readout;
-	private double[][][] theta_readout;
 	private int[][] topic_word; // How many times a term has been assigned a topic
 	private int[] topic_cumul; // How many words a topic has.
 	private int[][] document_topic; // How many words have been assigned to a topic in a document
@@ -50,8 +48,6 @@ public class LDAGibbsSampler {
 		//Internal variables
 		nReads = (int) ((((double)(nIterations-nBurnInIterations))/((double)nReadInIterations)));
 		nDocuments = wordcount.size();
-		beta_readout = new double[nTopics][nWords][nReads];
-		theta_readout = new double[nDocuments][nTopics][nReads];
 		topic_word = new int[nTopics][nWords]; // How many times a term has been assigned a topic
 		topic_cumul = new int[nTopics]; // How many words a topic has.
 		document_topic = new int[nDocuments][nTopics]; // How many words have been assigned to a topic in a document
@@ -148,16 +144,17 @@ public class LDAGibbsSampler {
 		        	//Read out beta
 		        	for(int k = 0; k < nTopics; k++) {
 		        		for(int i = 0; i < nWords; i++) {
-		        			beta_readout[k][i][read_nr] = ((double)(topic_word[k][i] + eta))/
-		        										  ((double)(topic_cumul[k] + ((double)nWords)*eta));
+		        			beta[k][i] += ((double)(topic_word[k][i] + eta))/
+										  ((double)(topic_cumul[k] + ((double)nWords)*eta));
 		        		}
 		        	}
 		        		
 		        	//Read out theta
 		        	for(int d = 0; d < nDocuments; d++) {
 		        		for(int k = 0; k < nTopics; k++) {
-		        			theta_readout[d][k][read_nr] = ((double)(document_topic[d][k] + alpha))/
-		        										  ((double)(document_cumul[d] + ((double)nTopics)*alpha));
+		        			theta[d][k] += ((double)(document_topic[d][k] + alpha))/
+										  ((double)(document_cumul[d] + ((double)nTopics)*alpha));
+		        			
 		        		}
 		        	}
 		        	
@@ -173,28 +170,20 @@ public class LDAGibbsSampler {
 		//Calculate average beta
     	for(int k = 0; k < nTopics; k++) {
     		for(int i = 0; i < nWords; i++) {
-    			double sum = 0;
-    			for(int r = 0; r < nReads; r++) {
-	    			sum += beta_readout[k][i][r];
-    			}
-    			beta[k][i] = sum/((double)nReads);
+    			beta[k][i] /= ((double)nReads);
     		}
     	}
     		
     	//Calculate average theta
     	for(int d = 0; d < nDocuments; d++) {
     		for(int k = 0; k < nTopics; k++) {
-    			double sum = 0;
-    			for(int r = 0; r < nReads; r++) {
-	    			sum += theta_readout[d][k][r];
-    			}
-    			theta[d][k] = sum/((double)nReads);
+    			theta[d][k] /= ((double)nReads);
     		}
     	}
     	
     	if(printProgression) {
     		System.out.println("LDA Gibbs sampling finished after " + 
-    						  (System.currentTimeMillis() - startTime) + " milliseconds!");
+    						  (System.currentTimeMillis() - startTime) + " milliseconds! \n");
     	}
 
 	}
@@ -235,6 +224,7 @@ public class LDAGibbsSampler {
 	}
 	
 	/**
+	 * beta[nTopics][nWords]
 	 * @return the estimate topic-word distribution
 	 */
 	public double[][] getBeta() {
@@ -242,6 +232,7 @@ public class LDAGibbsSampler {
 	}
 
 	/**
+	 * theta[nDocuments][nTopics]
 	 * @return the estimated document-topic distribution
 	 */
 	public double[][] getTheta() {

@@ -11,16 +11,20 @@ public class CollectData {
 	
 	public static void main(String[] args){
     	System.setProperty("ECHO_NEST_API_KEY", "WT12J9ZGKIZLVZVSJ");
-    	int nArtists = 3;
-    	int nRelated = 10;
+    	int nArtists = 10;
+    	int nRelated = 5;
     	String delimitor = " --------------------------------------------- \n ";
-    	String seed = "rolling stones";
+    	String[] seeds = {"rolling stones", "deep purple", 				// 60-70's rock
+    				      "NICKELBACK", "RISE AGAINST",					// modern rock
+    				      "run dmc", "beastie boys",					// 80's hip-hop
+    					  "Kanye west", "Eminem",						// modern hip-hop
+    					  "depeche mode", "joy division"};				// 80's electro/punk
 		
 		DataCollector cd;
 		double startTime = System.currentTimeMillis();
 		try {
 			cd = new DataCollector();
-			cd.randomWalkBioData(seed, nArtists, nRelated, delimitor);
+			cd.randomWalkBioData(seeds, nArtists, nRelated, delimitor);
 			double seconds = (System.currentTimeMillis() - startTime)/1000;
 			System.out.println("Ended successfully after " + seconds + " seconds.");
 		} catch (EchoNestException e) {

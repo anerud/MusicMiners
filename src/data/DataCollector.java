@@ -42,47 +42,53 @@ public class DataCollector {
      * @throws EchoNestException
      * @throws FileNotFoundException 
      */
-	public void randomWalkBioData(String seedName, int nArtists, int nRelated, 
+	public void randomWalkBioData(String[] seedNames, int nArtists, int nRelated, 
 			String delimiter) throws EchoNestException, FileNotFoundException {
-		appearedArtists = new HashSet<String>(nArtists);
-        List<Artist> artists = en.searchArtists(seedName);
-        StringBuilder biographies;
-        if (artists.size() > 0) {
-            Artist seed = artists.get(0);
-            for (int i = 0; i < nArtists; i++) {
-            	//Print artist and bio data to file
-            	biographies = new StringBuilder();
-            	String artistName = seed.getName();
-            	String artistID = seed.getID();
-            	System.out.println("Artist " + (i + 1) + ": " + artistName);
-            	PrintWriter pw = new PrintWriter("data/" + artistID + ".artist");
-            	pw.print(artistID + delimiter + artistName);
-            	for(Biography b : seed.getBiographies()) {
-            		biographies.append(b.getText() + " ");
-            	}
-            	pw.println(delimiter + biographies.toString());
-            	pw.close();
-            	//Find new related artist which have not appeared yet.
-            	List<Artist> sims = seed.getSimilar(nRelated);
-            	if (sims.size() > 0) {
-	            	Collections.shuffle(sims);
-	            	seed = sims.get(0);
-	            	int attempt = 1;
-	            	while(hasAppeared(seed) && attempt < sims.size()) {
-	            		seed = sims.get(attempt);
-	            		attempt++;
-	            	}
-	            	if(attempt >= sims.size()) {
-	            		seed = artists.get(0);
-	            		i -= 1;
+		PrintWriter pw_names = new PrintWriter("data/artistNames.txt");
+		for(String seedName : seedNames) {
+			appearedArtists = new HashSet<String>(nArtists);
+	        List<Artist> artists = en.searchArtists(seedName);
+	        StringBuilder biographies;
+	        if (artists.size() > 0) {
+	            Artist seed = artists.get(0);
+	            for (int i = 0; i < nArtists; i++) {
+	            	//Print artist and bio data to file
+	            	if(!hasAppeared(seed)) {
+		            	addArtist(seed);
+		            	biographies = new StringBuilder();
+		            	String artistName = seed.getName();
+		            	String artistID = seed.getID();
+		            	System.out.println("Artist " + (i + 1) + ": " + artistName);
+		            	for(Biography b : seed.getBiographies()) {
+		            		biographies.append(b.getText() + " ");
+		            	}
+		            	PrintWriter pw = new PrintWriter("data/" + artistID + ".artist");
+		            	pw.println(biographies.toString());
+		            	pw.close();
+		            	pw_names.println(artistID + "," + artistName);
 	            	} else {
-	            		addArtist(seed);
+	            		i--;
 	            	}
-                } else {
-                    break;
-                }
-            }
-        }
+	            	//Find new related artist which have not appeared yet.
+	            	List<Artist> sims = seed.getSimilar(nRelated);
+	            	if (sims.size() > 0) {
+		            	Collections.shuffle(sims);
+		            	seed = sims.get(0);
+		            	int attempt = 1;
+		            	while(hasAppeared(seed) && attempt < sims.size()) {
+		            		seed = sims.get(attempt);
+		            		attempt++;
+		            	}
+		            	if(attempt >= sims.size()) {
+		            		seed = artists.get(0);
+		            	} 
+	                } else {
+	                	seed = artists.get(0);
+	                }
+	            }
+	        }
+		}
+		pw_names.close();
     }
 
     private void addArtist(Artist a) {

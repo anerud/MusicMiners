@@ -6,8 +6,7 @@ public class WordCountTuple implements Comparable<WordCountTuple> {
 	private int count;
 	private int id;
 	
-	public WordCountTuple(String word, int id, int count){
-		this.word = word;
+	public WordCountTuple(int id, int count){
 		this.id  = id;
 		this.count = count;
 	}
