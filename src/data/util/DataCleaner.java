@@ -53,7 +53,7 @@ public class DataCleaner {
 		return newTest;
 	}
 	
-	private static String cleanString(String s) {
+	public static String cleanString(String s) {
 		StringBuilder sb = new StringBuilder();
 		for(char c : s.toCharArray()) {
 			if(isCleanChar(c)) {
@@ -88,6 +88,8 @@ public class DataCleaner {
 				 c == '”' ||
 				 c == '…' ||
 				 c == ' ' ||
+				 c == '\\' ||
+				 c == '/' ||
 				 c == '\t' ||
 				 c == '\n' ||
 				 c == '\r' ||

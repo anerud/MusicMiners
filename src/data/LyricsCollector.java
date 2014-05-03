@@ -13,6 +13,8 @@ import org.jmusixmatch.entity.lyrics.Lyrics;
 import org.jmusixmatch.entity.track.Track;
 import org.jmusixmatch.entity.track.TrackData;
 
+import data.util.DataCleaner;
+
 public class LyricsCollector {
 	
 	private MusixMatch musixMatch;
@@ -27,7 +29,7 @@ public class LyricsCollector {
 		this.split = split;
 	}
 	
-	public void collectLyrics(int startPos) throws FileNotFoundException, IOException{
+	public void collectLyrics(int startPos, int tryNumber) throws FileNotFoundException, IOException{
 		
 		try(BufferedReader br = new BufferedReader(new FileReader(inputFileName))) {
 			String line = br.readLine();
@@ -48,24 +50,71 @@ public class LyricsCollector {
 					TrackData data = track.getTrack();
 		            int trackID = data.getTrackId();
 		            Lyrics lyrics = musixMatch.getLyrics(trackID);
-		            PrintWriter pw = new PrintWriter(outputFolder + "/" + artistName + " - " + songName + ".lyric");
+		            PrintWriter pw = new PrintWriter(outputFolder + "/" + 
+		            cleanString(artistName) + " - " + cleanString(songName) + ".lyric");
 		            pw.print(lyrics.getLyricsBody());
-		            System.out.println(lyrics.getLyricsBody());
+		            System.out.println(DataCleaner.cleanString(artistName) + " - " + 
+		            		DataCleaner.cleanString(songName) + ": " + lineNumber);
 		            pw.close();
 		            
 		            line = br.readLine();
 		            lineNumber++;
 		            
-				} catch (Exception e) {
+				} catch (MusixMatchException e) {
 					System.out.println("Exception... try again...");
 					System.out.println(line + ", " + lineNumber);
-					collectLyrics(lineNumber);
+					if(tryNumber < 3) {
+						collectLyrics(lineNumber, tryNumber + 1);
+						break;
+					} else {
+						collectLyrics(lineNumber + 1, 0);
+						break;
+					}
 				}
 				
 	        }
 	        
 	    }
 		
+	}
+	
+	public static String cleanString(String s) {
+		StringBuilder sb = new StringBuilder();
+		for(char c : s.toCharArray()) {
+			if(isCleanChar(c)) {
+				sb.append(c);
+			}
+			
+		}
+		return sb.toString();
+	}
+	
+	private static boolean isCleanChar(char c){
+		return !( 
+				 c == ',' ||
+				 c == ':' ||
+				 c == ';' ||
+				 c == '|' ||
+				 c == '%' ||
+				 c == '[' ||
+				 c == ']' ||
+				 c == '}' ||
+				 c == '{' ||
+				 c == '*' ||
+				 c == '$' ||
+				 c == '!' ||
+				 c == '?' ||
+				 c == '#' ||
+				 c == '¤' ||
+				 c == '£' ||
+				 c == '“' ||
+				 c == '”' ||
+				 c == '…' ||
+				 c == '\\' ||
+				 c == '/' ||
+				 c == '\t' ||
+				 c == '\n' ||
+				 c == '\r');
 	}
 
 }
