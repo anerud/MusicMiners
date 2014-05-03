@@ -12,7 +12,7 @@ public class CollectData {
 	
 	public static void main(String[] args) throws IOException {
     	System.setProperty("ECHO_NEST_API_KEY", "WT12J9ZGKIZLVZVSJ");
-    	int nArtists = 50;
+    	int nArtists = 2;
     	int nRelated = 15;
     	String[] seeds = {"rolling stones", "deep purple", 				// 60-70's rock
     				      "NICKELBACK", "RISE AGAINST",					// modern rock
