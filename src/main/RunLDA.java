@@ -20,17 +20,19 @@ public class RunLDA {
 	private static ArrayList<String> vocabulary;
 	private static ArrayList<String> documentOrder;
 	private static HashMap<String,String> documentNames;
-	private static int nTopics = 10;
+	private static int nTopics = 25;
 	private static double alpha = 50/nTopics;
 	private static double eta = 0.1;
-	private static int nIterations = 100;
-	private static int nBurnInIterations = 10;
+	private static int nIterations = 2000;
+	private static int nBurnInIterations = 500;
 	private static int nReadInIterations = 10;
 	private static int nWords;
 	private static boolean printProgress = true;
 	
 	private static double[][] beta;
 	private static double[][] theta;
+	
+	private static Integer[][] sortedWordsForTopics;
 	
 	/**
 	 * Run LDA gibbs sampler.
@@ -103,9 +105,21 @@ public class RunLDA {
 		theta = ldags.getTheta();
 		double[][] distances = computeDistances();
 		
+		int nTopics = theta[0].length;
+		
+		sortedWordsForTopics = new Integer[nTopics][nWords];
+		for(int k = 0; k < nTopics; k ++) {
+			for(int i = 0; i < nWords; i++) {
+				sortedWordsForTopics[k][i] = new Integer(0);
+			}
+			
+		}
+		
+		sortBestWordsInEachTopic();
+		
 		printNBestWords(5);
-//		printNRelatedDocuments(distances,10);
-		printLyricsStats(3,5);
+		printNRelatedDocuments(distances,10);
+		printLyricsStats(4,6);
 		
 		
 	}
@@ -118,23 +132,24 @@ public class RunLDA {
 			ArrayIndexComparator comparator = new ArrayIndexComparator(theta[d]);
 			Integer[] indexes = comparator.createIndexArray();
 			Arrays.sort(indexes, comparator);
+			String fileName = documentNames.get(documentOrder.get(d));
+			PrintWriter pw = null;
+			try {
+				pw = new PrintWriter("lyricsdata/" + fileName + ".stats");
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+			}
+			
 			System.out.println(d);
 			for(int i = indexes.length - 1; i > indexes.length - 1 - nTopicsToPrint; i--) {
-				ArrayIndexComparator comparator2 = new ArrayIndexComparator(beta[indexes[i]]);
-				Integer[] indexes2 = comparator2.createIndexArray();
-				Arrays.sort(indexes2, comparator2);
-				String fileName = documentNames.get(documentOrder.get(d));
-				PrintWriter pw = null;
-				try {
-					pw = new PrintWriter("lyricsdata/" + fileName + ".stats");
-				} catch (FileNotFoundException e1) {
-					e1.printStackTrace();
+				pw.println("topic " + indexes[i] + " (" +  round(theta[d][indexes[i]],4) + ")");
+				for(int j = nWords - 1; j > nWords - 1 - nWordsToPrint; j--) {
+					pw.println(vocabulary.get(sortedWordsForTopics[indexes[i]][j]) + " (" 
+							+ round(beta[indexes[i]][sortedWordsForTopics[indexes[i]][j]],4) + ")");
 				}
-				for(int j = indexes2.length - 1; j > indexes2.length - 1 - nWordsToPrint; j--) {
-					pw.println(vocabulary.get(indexes2[j]));// + ": " + beta[indexes[i]][indexes2[j]]);
-				}
-				pw.close();
+				pw.println();
 			}
+			pw.close();
 		}
 	}
 
@@ -170,7 +185,7 @@ public class RunLDA {
 			}
 			for(int i = 1; i <= nRelatedDoc; i++) {
 				pw.println(documentNames.get(documentOrder.get(indexes[i])) + " (" + 
-						((double)Math.round(distances[d][indexes[i]] * 100000) / 100000)  + ")");
+						round(distances[d][indexes[i]],5)  + ")");
 			}
 			pw.close();
 //			System.out.println("\n-----------------------------------------\n");
@@ -189,6 +204,19 @@ public class RunLDA {
 			
 			System.out.println("\n-----------------------------------------\n");
 		}
+	}
+	
+	private static void sortBestWordsInEachTopic() {
+		for(int k = 0; k < nTopics; k++) {
+			ArrayIndexComparator comparator = new ArrayIndexComparator(beta[k]);
+			Integer[] indexes = comparator.createIndexArray();
+			Arrays.sort(indexes, comparator);
+			sortedWordsForTopics[k] = indexes;
+		}
+	}
+	
+	private static double round(double value, int n) {
+		return ((double)Math.round(value * Math.pow(10, n)) / Math.pow(10, n));
 	}
 	
 }
