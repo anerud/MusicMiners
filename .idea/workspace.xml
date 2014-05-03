@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4bb72544-516b-422b-8796-04aed0550544" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/Main.java" afterPath="$PROJECT_DIR$/src/gui/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MusicMiners.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -74,7 +73,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/gui/Main.java" line="222" class="gui.Main" package="gui">
+      <breakpoint url="file://$PROJECT_DIR$/src/gui/Main.java" line="236" class="gui.Main" package="gui">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -111,13 +110,13 @@
       <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gui/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="181" column="36" selection-start="6978" selection-end="6978" vertical-scroll-proportion="0.62674654" vertical-offset="2763" max-vertical-offset="4131">
+            <state line="106" column="83" selection-start="4328" selection-end="4328" vertical-scroll-proportion="0.38922155" vertical-offset="1607" max-vertical-offset="4369">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1378#5331#0" expanded="true" />
-                <element signature="e#5320#5321#0" expanded="true" />
-                <element signature="e#7421#7676#0" expanded="true" />
-                <element signature="e#7665#7666#0" expanded="true" />
+                <element signature="e#1378#6005#0" expanded="true" />
+                <element signature="e#5994#5995#0" expanded="true" />
+                <element signature="e#8095#8350#0" expanded="true" />
+                <element signature="e#8339#8340#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -831,13 +830,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="181" column="36" selection-start="6978" selection-end="6978" vertical-scroll-proportion="0.62674654" vertical-offset="2763" max-vertical-offset="4131">
+        <state line="106" column="83" selection-start="4328" selection-end="4328" vertical-scroll-proportion="0.38922155" vertical-offset="1607" max-vertical-offset="4369">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1378#5331#0" expanded="true" />
-            <element signature="e#5320#5321#0" expanded="true" />
-            <element signature="e#7421#7676#0" expanded="true" />
-            <element signature="e#7665#7666#0" expanded="true" />
+            <element signature="e#1378#6005#0" expanded="true" />
+            <element signature="e#5994#5995#0" expanded="true" />
+            <element signature="e#8095#8350#0" expanded="true" />
+            <element signature="e#8339#8340#0" expanded="true" />
           </folding>
         </state>
       </provider>

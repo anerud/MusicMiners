@@ -100,6 +100,20 @@ public class Main extends JFrame{
                                 e1.printStackTrace();
                             }
 
+                            b2.append("\n\n Keywords: \n");
+                            String IOFileName4 = "lyricsdata/" + lyricFileName + ".lyriccleaned";
+                            BufferedReader br4 = null;
+                            try {
+                                br4 = new BufferedReader(new FileReader(IOFileName4));
+
+                                while(br4.ready()){
+                                    b2.append(br4.readLine() + "\n");
+                                }
+                                br4.close();
+                            } catch (Exception e1) {
+                                e1.printStackTrace();
+                            }
+
                             jta2.setText(b2.toString());
 
 //                            _________________________________
