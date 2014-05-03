@@ -27,7 +27,7 @@ public class LyricsCollector {
 		this.split = split;
 	}
 	
-	public void collectLyrics(int startPos) throws FileNotFoundException, IOException{
+	public void collectLyrics(int startPos, int tryNumber) throws FileNotFoundException, IOException{
 		
 		try(BufferedReader br = new BufferedReader(new FileReader(inputFileName))) {
 			String line = br.readLine();
@@ -56,10 +56,15 @@ public class LyricsCollector {
 		            line = br.readLine();
 		            lineNumber++;
 		            
-				} catch (Exception e) {
+				} catch (MusixMatchException e) {
 					System.out.println("Exception... try again...");
 					System.out.println(line + ", " + lineNumber);
-					collectLyrics(lineNumber);
+					if(tryNumber < 3) {
+						collectLyrics(lineNumber, tryNumber + 1);
+					} else {
+						collectLyrics(lineNumber + 1, 0);
+					}
+					
 				}
 				
 	        }
