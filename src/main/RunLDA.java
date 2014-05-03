@@ -1,5 +1,7 @@
 package main;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -18,11 +20,11 @@ public class RunLDA {
 	private static ArrayList<String> vocabulary;
 	private static ArrayList<String> documentOrder;
 	private static HashMap<String,String> documentNames;
-	private static int nTopics = 30;
+	private static int nTopics = 10;
 	private static double alpha = 50/nTopics;
 	private static double eta = 0.1;
-	private static int nIterations = 1000;
-	private static int nBurnInIterations = 500;
+	private static int nIterations = 100;
+	private static int nBurnInIterations = 10;
 	private static int nReadInIterations = 10;
 	private static int nWords;
 	private static boolean printProgress = true;
@@ -85,7 +87,7 @@ public class RunLDA {
 		}
 		
 		//Import words and count them
-		DataInitiator dataInit = new DataInitiator("wordcount_artist.txt", "vocabulary_artist.txt");
+		DataInitiator dataInit = new DataInitiator("wordcount_lyrics.txt", "vocabulary_lyrics.txt");
 		wordcount = dataInit.getWordcount();
 		vocabulary = dataInit.getVocabulary();
 		documentOrder = dataInit.getDocumentOrder();
@@ -102,12 +104,40 @@ public class RunLDA {
 		double[][] distances = computeDistances();
 		
 		printNBestWords(5);
-		printNRelatedDocuments(distances,5);
-		
+//		printNRelatedDocuments(distances,10);
+		printLyricsStats(3,5);
 		
 		
 	}
 	
+	private static void printLyricsStats(int nTopicsToPrint, int nWordsToPrint) {
+		int nDocuments = theta.length;
+		int nTopics = theta[0].length;
+		
+		for(int d = 0; d < nDocuments; d++) {
+			ArrayIndexComparator comparator = new ArrayIndexComparator(theta[d]);
+			Integer[] indexes = comparator.createIndexArray();
+			Arrays.sort(indexes, comparator);
+			System.out.println(d);
+			for(int i = indexes.length - 1; i > indexes.length - 1 - nTopicsToPrint; i--) {
+				ArrayIndexComparator comparator2 = new ArrayIndexComparator(beta[indexes[i]]);
+				Integer[] indexes2 = comparator2.createIndexArray();
+				Arrays.sort(indexes2, comparator2);
+				String fileName = documentNames.get(documentOrder.get(d));
+				PrintWriter pw = null;
+				try {
+					pw = new PrintWriter("lyricsdata/" + fileName + ".stats");
+				} catch (FileNotFoundException e1) {
+					e1.printStackTrace();
+				}
+				for(int j = indexes2.length - 1; j > indexes2.length - 1 - nWordsToPrint; j--) {
+					pw.println(vocabulary.get(indexes2[j]));// + ": " + beta[indexes[i]][indexes2[j]]);
+				}
+				pw.close();
+			}
+		}
+	}
+
 	private static double[][] computeDistances() {
 		int nDocuments = theta.length;
 		int nTopics = theta[0].length;
@@ -132,12 +162,18 @@ public class RunLDA {
 			ArrayIndexComparator comparator = new ArrayIndexComparator(distances[d]);
 			Integer[] indexes = comparator.createIndexArray();
 			Arrays.sort(indexes, comparator);
-			System.out.println("------- " + documentNames.get(documentOrder.get(d)) + " -------");
-			for(int i = 1; i <= nRelatedDoc; i++) {
-				System.out.println(documentNames.get(documentOrder.get(indexes[i])) + ": " + distances[d][indexes[i]]);
+			PrintWriter pw = null;
+			try {
+				pw = new PrintWriter("lyricsdata/" + documentNames.get(documentOrder.get(d)) + ".relatedsongs");
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
 			}
-			
-			System.out.println("\n-----------------------------------------\n");
+			for(int i = 1; i <= nRelatedDoc; i++) {
+				pw.println(documentNames.get(documentOrder.get(indexes[i])) + " (" + 
+						((double)Math.round(distances[d][indexes[i]] * 100000) / 100000)  + ")");
+			}
+			pw.close();
+//			System.out.println("\n-----------------------------------------\n");
 		}
 	}
 	

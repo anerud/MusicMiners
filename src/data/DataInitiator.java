@@ -28,11 +28,13 @@ public class DataInitiator {
 	private void importData(String dataSetName, String vocabularyName){
 		
 		//Read documents
+		documentNames = new HashMap<String,String>();
 		documentOrder = new ArrayList<String>();
-		try(BufferedReader br = new BufferedReader(new FileReader("data/document_order.txt"))) {
+		try(BufferedReader br = new BufferedReader(new FileReader("lyricsdata/document_order.txt"))) {
 	        String line = br.readLine();
 	        while (line != null) {
 	        	documentOrder.add(line);
+	        	documentNames.put(line, line);
 	            line = br.readLine();
 	        }
 	    } catch(IOException e) {
@@ -40,21 +42,21 @@ public class DataInitiator {
 	    }
 		
 		//Read documents names
-		documentNames = new HashMap<String,String>();
-		try(BufferedReader br = new BufferedReader(new FileReader("data/artistNames.txt"))) {
-	        String line = br.readLine();
-	        while (line != null) {
-	        	String[] split = line.split(",");
-	        	documentNames.put(split[0], split[1]);
-	            line = br.readLine();
-	        }
-	    } catch(IOException e) {
-	    	e.printStackTrace();
-	    }
+		
+//		try(BufferedReader br = new BufferedReader(new FileReader("lyricsdata/songNames.txt"))) {
+//	        String line = br.readLine();
+//	        while (line != null) {
+//	        	String[] split = line.split(",");
+//	        	documentNames.put(split[0], split[1]);
+//	            line = br.readLine();
+//	        }
+//	    } catch(IOException e) {
+//	    	e.printStackTrace();
+//	    }
 		
 		//Read vocabulary
 		vocabulary = new ArrayList<String>();
-		try(BufferedReader br = new BufferedReader(new FileReader("data/" + vocabularyName))) {
+		try(BufferedReader br = new BufferedReader(new FileReader("lyricsdata/" + vocabularyName))) {
 	        String line = br.readLine();
 	        while (line != null) {
 	        	vocabulary.add(line);
@@ -66,15 +68,17 @@ public class DataInitiator {
 		
 		//Read counts
 		wordcount = new ArrayList<List<WordCountTuple>>();
-		try(BufferedReader br = new BufferedReader(new FileReader("data/" + dataSetName))) {
+		try(BufferedReader br = new BufferedReader(new FileReader("lyricsdata/" + dataSetName))) {
 	        String line = br.readLine();
 	        while (line != null) {
 	        	ArrayList<WordCountTuple> doc = new ArrayList<WordCountTuple>();
 	        	wordcount.add(doc);
 	        	String[] wordCounts = line.split(" ");
 	        	for(String wc : wordCounts) {
-	        		String[] idCnt = wc.split(":");
-	        		doc.add(new WordCountTuple(Integer.parseInt(idCnt[0]), Integer.parseInt(idCnt[1])));
+	        		if(!wc.isEmpty()) {
+	        			String[] idCnt = wc.split(":");
+		        		doc.add(new WordCountTuple(Integer.parseInt(idCnt[0]), Integer.parseInt(idCnt[1])));
+	        		}
 	        	}
 	            line = br.readLine();
 	        }

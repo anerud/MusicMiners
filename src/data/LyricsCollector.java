@@ -13,6 +13,8 @@ import org.jmusixmatch.entity.lyrics.Lyrics;
 import org.jmusixmatch.entity.track.Track;
 import org.jmusixmatch.entity.track.TrackData;
 
+import com.google.gson.JsonSyntaxException;
+
 import data.util.DataCleaner;
 
 public class LyricsCollector {
@@ -49,13 +51,19 @@ public class LyricsCollector {
 					track = musixMatch.getMatchingTrack(songName, artistName);
 					TrackData data = track.getTrack();
 		            int trackID = data.getTrackId();
-		            Lyrics lyrics = musixMatch.getLyrics(trackID);
+		            Lyrics lyrics = null;
+		            try {
+		            	lyrics = musixMatch.getLyrics(trackID);
+		            } catch(JsonSyntaxException e) {
+		            	collectLyrics(lineNumber + 1, 0);
+		            	break;
+		            }
 		            PrintWriter pw = new PrintWriter(outputFolder + "/" + 
 		            cleanString(artistName) + " - " + cleanString(songName) + ".lyric");
 		            pw.print(lyrics.getLyricsBody());
-		            System.out.println(DataCleaner.cleanString(artistName) + " - " + 
-		            		DataCleaner.cleanString(songName) + ": " + lineNumber);
 		            pw.close();
+		            System.out.println(cleanString(artistName) + " - " + 
+		            		cleanString(songName) + ": " + lineNumber);
 		            
 		            line = br.readLine();
 		            lineNumber++;
@@ -110,6 +118,7 @@ public class LyricsCollector {
 				 c == '“' ||
 				 c == '”' ||
 				 c == '…' ||
+				 c == '\"' ||
 				 c == '\\' ||
 				 c == '/' ||
 				 c == '\t' ||

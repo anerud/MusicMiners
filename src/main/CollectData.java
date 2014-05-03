@@ -12,7 +12,7 @@ public class CollectData {
 	
 	public static void main(String[] args) throws IOException {
     	System.setProperty("ECHO_NEST_API_KEY", "WT12J9ZGKIZLVZVSJ");
-    	int nArtists = 2;
+    	int nArtists = 50;
     	int nRelated = 15;
     	String[] seeds = {"rolling stones", "deep purple", 				// 60-70's rock
     				      "NICKELBACK", "RISE AGAINST",					// modern rock
@@ -23,7 +23,7 @@ public class CollectData {
     					  "slipknot", "opeth",							// 90/2000 Death metal
     					  "lumineers", "mumford and sons",				// new popular music
     					  "justin bieber", "nicki minaj",				// GOOD SHIT!!!!
-    					  "rihanna", "beyonce"};				    // more fantastic music...
+    					  "rihanna", "beyonce"};				        // more fantastic music...
 		
 		DataCollector cd;
 		double startTime = System.currentTimeMillis();
