@@ -20,10 +20,10 @@ public class RunLDA {
 	private static ArrayList<String> vocabulary;
 	private static ArrayList<String> documentOrder;
 	private static HashMap<String,String> documentNames;
-	private static int nTopics = 25;
+	private static int nTopics = 20;
 	private static double alpha = 50/nTopics;
 	private static double eta = 0.1;
-	private static int nIterations = 2000;
+	private static int nIterations = 1000;
 	private static int nBurnInIterations = 500;
 	private static int nReadInIterations = 10;
 	private static int nWords;
@@ -140,7 +140,6 @@ public class RunLDA {
 				e1.printStackTrace();
 			}
 			
-			System.out.println(d);
 			for(int i = indexes.length - 1; i > indexes.length - 1 - nTopicsToPrint; i--) {
 				pw.println("topic " + indexes[i] + " (" +  round(theta[d][indexes[i]],4) + ")");
 				for(int j = nWords - 1; j > nWords - 1 - nWordsToPrint; j--) {
