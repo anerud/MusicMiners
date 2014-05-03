@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="musixmatch">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/musixmatch.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
