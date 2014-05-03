@@ -35,13 +35,13 @@ public class Main extends JFrame{
 
         final JFrame fr = new JFrame("Music Miners");
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        fr.setLocation(300, 300);
+        fr.setLocation(50, 50);
         fr.setSize(new Dimension(800,800));
         ImageIcon icon = new ImageIcon("");
         fr.setIconImage(ImageIO.read(new File("resources/lemming.jpg")));
         fr.setVisible(true);
 
-        JPanel panel = new JPanel(new MigLayout("debug, fill", "", "[growprio 0][fill, growprio 200][growprio 150]"));
+        JPanel panel = new JPanel(new MigLayout("fill", "", "[growprio 0][fill, growprio 200][growprio 150]"));
         final JTextField field = new JTextField();
         field.setPreferredSize(new Dimension(1000, 25));
         final ActionListener listener = new ActionListener() {
@@ -179,6 +179,7 @@ public class Main extends JFrame{
         jta.setOpaque(false);
         JScrollPane sp = new JScrollPane(jta);
         panel.add(sp, "grow");
+        sp.setPreferredSize(new Dimension(400, 500));
         sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 
         jta2 = new JTextArea("stats here");
@@ -186,7 +187,7 @@ public class Main extends JFrame{
         jta2.setOpaque(false);
         JScrollPane sp2 = new JScrollPane(jta2);
         panel.add(sp2, "grow");
-        sp2.setPreferredSize(new Dimension(400, 800));
+        sp2.setPreferredSize(new Dimension(400, 500));
         sp2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 
         jta3 = new JTextArea("stats here");
