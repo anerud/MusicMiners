@@ -12,6 +12,7 @@
     <orderEntry type="library" name="json_simple-1.1" level="project" />
     <orderEntry type="library" name="junit-4.8.1" level="project" />
     <orderEntry type="library" name="musixmatch" level="project" />
+    <orderEntry type="library" name="miglayout-4.0-swing" level="project" />
   </component>
 </module>
 
