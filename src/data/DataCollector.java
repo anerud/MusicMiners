@@ -119,7 +119,7 @@ public class DataCollector {
                         String artistName = seed.getName();
                         System.out.println("Artist " + (i + 1) + ": " + artistName);
                         for(Song s : seed.getSongs()) {
-                            String songStr = s.getArtistName() + ";" + s.getTitle() + "\n";
+                            String songStr = s.getArtistName() + ";" + s.getTitle();
                             songsSet.add(songStr);
                         }
                     } else {
@@ -146,7 +146,7 @@ public class DataCollector {
         }
         PrintWriter pw_songs = new PrintWriter("data/songs.txt");
         for(String s : songsSet){
-            pw_songs.print(s);
+            pw_songs.println(s);
         }
         pw_songs.close();
     }
