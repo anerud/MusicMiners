@@ -102,7 +102,7 @@ public class DataCollector {
         while(br.ready()){
             String song = br.readLine();
             if(song != ""){
-                songsSet.add(br.readLine());
+                songsSet.add(song);
             }
         }
         br.close();
