@@ -93,11 +93,11 @@ public class DataCollector {
      * @throws EchoNestException
      * @throws FileNotFoundException
      */
-    public void randomWalkSongData(String[] seedNames, int nArtists, int nRelated,
-                                  String delimiter) throws EchoNestException, IOException {
-
+    public void randomWalkSongData(String[] seedNames, int nArtists, int nRelated) 
+    			throws EchoNestException, IOException {
+    	String IOFileName = "lyricsdata/songsinput.txt";
         Set<String> songsSet = new HashSet<>();
-        BufferedReader br = new BufferedReader(new FileReader("data/songs.txt"));
+        BufferedReader br = new BufferedReader(new FileReader(IOFileName));
 
         while(br.ready()){
             String song = br.readLine();
@@ -144,7 +144,7 @@ public class DataCollector {
                 }
             }
         }
-        PrintWriter pw_songs = new PrintWriter("data/songs.txt");
+        PrintWriter pw_songs = new PrintWriter(IOFileName);
         for(String s : songsSet){
             pw_songs.println(s);
         }
