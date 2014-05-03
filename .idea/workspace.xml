@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bb72544-516b-422b-8796-04aed0550544" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gui/Main.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/data/DataCollector.java" afterPath="$PROJECT_DIR$/src/data/DataCollector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/songs.txt" afterPath="$PROJECT_DIR$/data/songs.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/Main.java" afterPath="$PROJECT_DIR$/src/gui/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MusicMiners.iml" afterPath="$PROJECT_DIR$/MusicMiners.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MusicMiners.iws" />
@@ -61,6 +59,38 @@
       </breakpoint>
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <line_breakpoints>
+      <breakpoint url="file://$PROJECT_DIR$/src/gui/Main.java" line="145" class="gui.Main" package="gui">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/gui/Main.java" line="123" class="gui.Main$3" package="gui">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -70,29 +100,94 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="RunLDA.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/RunLDA.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="36" selection-start="867" selection-end="867" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="2669">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DataCollector.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="DataCollector.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/DataCollector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="148" column="38" selection-start="5581" selection-end="5581" vertical-scroll-proportion="0.69455254" vertical-offset="2108" max-vertical-offset="2805">
+            <state line="99" column="29" selection-start="3543" selection-end="3543" vertical-scroll-proportion="0.0" vertical-offset="1445" max-vertical-offset="2805">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gui/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="4" selection-start="101" selection-end="101" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
+            <state line="131" column="39" selection-start="4440" selection-end="4440" vertical-scroll-proportion="2.413203" vertical-offset="1240" max-vertical-offset="2822">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1273#2423#0" expanded="true" />
+                <element signature="e#2412#2413#0" expanded="true" />
+                <element signature="e#3906#4161#0" expanded="true" />
+                <element signature="e#4150#4151#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SwingWorker.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/SwingWorker.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="225" column="22" selection-start="7171" selection-end="7171" vertical-scroll-proportion="0.0" vertical-offset="2986" max-vertical-offset="13889">
+              <folding>
+                <element signature="e#0#28458#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#8741#8958#0" expanded="false" />
+                <element signature="e#8939#8940#0" expanded="false" />
+                <element signature="e#16093#16094#0" expanded="false" />
+                <element signature="e#16124#16125#0" expanded="false" />
+                <element signature="e#22407#22408#0" expanded="false" />
+                <element signature="e#22451#22452#0" expanded="false" />
+                <element signature="e#23282#23394#0" expanded="false" />
+                <element signature="e#23379#23380#0" expanded="false" />
+                <element signature="e#25368#26486#0" expanded="false" />
+                <element signature="e#25749#25766#0" expanded="false" />
+                <element signature="e#26056#26355#0" expanded="false" />
+                <element signature="e#26316#26317#0" expanded="false" />
+                <element signature="e#26467#26468#0" expanded="false" />
+                <element signature="e#28191#28423#0" expanded="false" />
+                <element signature="e#28400#28401#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="String.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/lang/String.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2401" column="20" selection-start="94856" selection-end="94856" vertical-scroll-proportion="0.0" vertical-offset="40061" max-vertical-offset="51833">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="songsinput.txt" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lyricsdata/songsinput.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="136">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KeyEvent.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/event/KeyEvent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1072" column="15" selection-start="38072" selection-end="38072" vertical-scroll-proportion="0.0" vertical-offset="17553" max-vertical-offset="27829">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BorderDemo.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/BorderDemo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="253" column="61" selection-start="10177" selection-end="10279" vertical-scroll-proportion="-6.730769" vertical-offset="4126" max-vertical-offset="4777">
+              <folding>
+                <element signature="e#0#10915#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#10796#10904#0" expanded="true" />
+                <element signature="e#10893#10894#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -101,7 +196,9 @@
         <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/io/BufferedReader.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="380" column="42" selection-start="12540" selection-end="12540" vertical-scroll-proportion="0.0" vertical-offset="5907" max-vertical-offset="8585">
-              <folding />
+              <folding>
+                <element signature="e#0#17179#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -110,7 +207,9 @@
         <entry file="file://$PROJECT_DIR$/src/main/CollectData.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="28" column="33" selection-start="999" selection-end="999" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -120,19 +219,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state line="6" column="13" selection-start="162" selection-end="162" vertical-scroll-proportion="-3.4" vertical-offset="0" max-vertical-offset="391">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CleanData.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/CleanData.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="36" selection-start="1528" selection-end="1528" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1088">
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#569#577#0" expanded="false" />
-                <element signature="e#1102#1110#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -152,8 +238,9 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/CollectData.java" />
         <option value="$PROJECT_DIR$/src/gui/MainFrame.java" />
-        <option value="$PROJECT_DIR$/src/gui/Main.java" />
         <option value="$PROJECT_DIR$/src/data/DataCollector.java" />
+        <option value="$PROJECT_DIR$/src/gui/BorderDemo.java" />
+        <option value="$PROJECT_DIR$/src/gui/Main.java" />
       </list>
     </option>
   </component>
@@ -170,7 +257,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="1" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
@@ -259,6 +346,34 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicMiners" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicMiners" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicMiners" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicMiners" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lyricsdata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -270,14 +385,14 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/musixmatch.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/miglayout-4.0-sources.jar!/" />
     <property name="recentsLimit" value="5" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="dynamic.classpath" value="false" />
   </component>
-  <component name="RunManager" selected="Application.CollectData">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="false" name="RunLDA" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.RunLDA" />
       <option name="VM_PARAMETERS" />
@@ -296,6 +411,28 @@
     </configuration>
     <configuration default="false" name="CollectData" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.CollectData" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="MusicMiners" />
+      <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gui.Main" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -443,14 +580,16 @@
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
-    <list size="2">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Application.RunLDA" />
       <item index="1" class="java.lang.String" itemvalue="Application.CollectData" />
+      <item index="2" class="java.lang.String" itemvalue="Application.Main" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Application.CollectData" />
-        <item index="1" class="java.lang.String" itemvalue="Application.RunLDA" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="1" class="java.lang.String" itemvalue="Application.CollectData" />
+        <item index="2" class="java.lang.String" itemvalue="Application.RunLDA" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -459,6 +598,11 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SliceManager">
+    <option name="analysisUIOptions">
+      <AnalysisUIOptions />
+    </option>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="4bb72544-516b-422b-8796-04aed0550544" name="Default" comment="" />
@@ -469,7 +613,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -477,7 +621,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.52981967" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5533981" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -491,7 +635,7 @@
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24967907" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13863929" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25104022" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33148405" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -549,7 +693,9 @@
     <entry file="file://$PROJECT_DIR$/src/main/RunLDA.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="13" selection-start="271" selection-end="271" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="2822">
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -567,7 +713,9 @@
     <entry file="file://$PROJECT_DIR$/src/main/RunLDA.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="13" selection-start="271" selection-end="271" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2822">
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -600,38 +748,108 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/CollectData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="33" selection-start="999" selection-end="999" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/io/BufferedReader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="380" column="42" selection-start="12540" selection-end="12540" vertical-scroll-proportion="0.0" vertical-offset="5907" max-vertical-offset="8585">
-          <folding />
+          <folding>
+            <element signature="e#0#17179#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/RunLDA.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="36" selection-start="867" selection-end="867" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="2669">
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/BorderDemo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="253" column="61" selection-start="10177" selection-end="10279" vertical-scroll-proportion="-6.730769" vertical-offset="4126" max-vertical-offset="4777">
+          <folding>
+            <element signature="e#0#10915#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#10796#10904#0" expanded="true" />
+            <element signature="e#10893#10894#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/awt/event/KeyEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1072" column="15" selection-start="38072" selection-end="38072" vertical-scroll-proportion="0.0" vertical-offset="17553" max-vertical-offset="27829">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/CollectData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="33" selection-start="999" selection-end="999" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/javax/swing/SwingWorker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="225" column="22" selection-start="7171" selection-end="7171" vertical-scroll-proportion="0.0" vertical-offset="2986" max-vertical-offset="13889">
+          <folding>
+            <element signature="e#0#28458#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#8741#8958#0" expanded="false" />
+            <element signature="e#8939#8940#0" expanded="false" />
+            <element signature="e#16093#16094#0" expanded="false" />
+            <element signature="e#16124#16125#0" expanded="false" />
+            <element signature="e#22407#22408#0" expanded="false" />
+            <element signature="e#22451#22452#0" expanded="false" />
+            <element signature="e#23282#23394#0" expanded="false" />
+            <element signature="e#23379#23380#0" expanded="false" />
+            <element signature="e#25368#26486#0" expanded="false" />
+            <element signature="e#25749#25766#0" expanded="false" />
+            <element signature="e#26056#26355#0" expanded="false" />
+            <element signature="e#26316#26317#0" expanded="false" />
+            <element signature="e#26467#26468#0" expanded="false" />
+            <element signature="e#28191#28423#0" expanded="false" />
+            <element signature="e#28400#28401#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/DataCollector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="29" selection-start="3543" selection-end="3543" vertical-scroll-proportion="0.0" vertical-offset="1445" max-vertical-offset="2805">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_05/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2401" column="20" selection-start="94856" selection-end="94856" vertical-scroll-proportion="0.0" vertical-offset="40061" max-vertical-offset="51833">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lyricsdata/songsinput.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="549">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="4" selection-start="101" selection-end="101" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/DataCollector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="148" column="38" selection-start="5581" selection-end="5581" vertical-scroll-proportion="0.69455254" vertical-offset="2108" max-vertical-offset="2805">
-          <folding />
+        <state line="131" column="39" selection-start="4440" selection-end="4440" vertical-scroll-proportion="2.413203" vertical-offset="1240" max-vertical-offset="2822">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1273#2423#0" expanded="true" />
+            <element signature="e#2412#2413#0" expanded="true" />
+            <element signature="e#3906#4161#0" expanded="true" />
+            <element signature="e#4150#4151#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -712,7 +930,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>musixmatch</last-edited>
+          <last-edited>miglayout-4.0-swing</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
