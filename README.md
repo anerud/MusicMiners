@@ -1,6 +1,6 @@
 This is a prototype "app" made at Gothenburg startup hack (gbgstartuphack.se).
 
-Latent Dirichlet Allocation was used to findi topics in song lyrics for over 5000 songs. The user can then search for songs and view both the lyrics and the most interesting results from the LDA algorithm. The user can also see other songs that is about the same topics as the current song.
+Latent Dirichlet Allocation was used to find topics in song lyrics for over 5000 songs. The user can then search for songs and view both the lyrics and the most interesting results from the LDA algorithm. The user can also see other songs that is about the same topics as the current song.
 
 To run the app, run the main class in the gui-package.
 
